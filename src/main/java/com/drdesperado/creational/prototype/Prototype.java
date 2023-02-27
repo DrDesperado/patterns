@@ -24,10 +24,6 @@ class Vehicle implements Cloneable {
         this.vehicleList = new ArrayList<>();
     }
 
-    public Vehicle(List<String> vehicleList) {
-        this.vehicleList = vehicleList;
-    }
-
     public void insertData() {
         vehicleList.add("Lada Priora");
         vehicleList.add("Audi A4");
@@ -42,12 +38,8 @@ class Vehicle implements Cloneable {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        List<String> tempList = new ArrayList<>();
-
-        for (String s : this.getVehicleList()) {
-            tempList.add(s);
-        }
-
-        return new Vehicle(tempList);
+        Vehicle cloneVehicle = (Vehicle) super.clone();
+        cloneVehicle.vehicleList = new ArrayList<>(vehicleList);
+        return cloneVehicle;
     }
 }
